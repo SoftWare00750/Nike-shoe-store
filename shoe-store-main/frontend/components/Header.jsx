@@ -18,16 +18,15 @@ const Header = () => {
   const [categories, setCategories] = useState(null);
   const { cartItems } = useSelector((state) => state.cart);
 
-  //   Handle navbar visibility
   const controlNavbar = () => {
     if (window.scrollY > 200) {
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow("-translate-y-[80px]");
       } else {
-        setShow("shadow-sm ");
+        setShow("shadow-lg backdrop-blur-sm bg-white/95");
       }
     } else {
-      setShow("translate-y-0");
+      setShow("translate-y-0 bg-white");
     }
     setLastScrollY(window.scrollY);
   };
@@ -50,21 +49,19 @@ const Header = () => {
 
   return (
     <header
-      className={`w-full h-[50px] md:h-[80px] bg-white flex items-center justify-between z-20 sticky top-0 transition-transform duration-300 ${show}`}
+      className={`w-full h-[50px] md:h-[80px] flex items-center justify-between z-20 sticky top-0 transition-all duration-300 ${show}`}
     >
       <Wrapper className="flex h-[60px] justify-between items-center">
         <Link href="/">
           <img src="/logo.svg" className="w-[40px] md:w-[60px]" alt="logo" />
         </Link>
 
-        {/* Desktop Menu */}
         <Menu
           showCatMenu={showCatMenu}
           setShowCatMenu={setShowCatMenu}
           categories={categories}
         />
 
-        {/* Mobile Menu */}
         {mobileMenu && (
           <MenuMobile
             showCatMenu={showCatMenu}
@@ -75,40 +72,28 @@ const Header = () => {
         )}
 
         <div className="flex items-center gap-2 text-black">
-          {/* Icon Start */}
-          <div
-            className="w-8 md:w-12 h-8 md:h-12 
-           rounded-full flex justify-center items-center hover:bg-black/0.05] cursor-pointer relative"
-          >
+          {/* Wishlist Icon */}
+          <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative transition-all">
             <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
-            <div
-              className="h-[14px] md:h-18px] min-w-[14px] md:min-w-[18px] rounded-full
-             bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px]
-            flex justify-center items-center px-[2px] md:px-[5px]"
-            >
-              12
+            <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-gradient-to-r from-red-500 to-pink-500 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px] font-bold">
+              0
             </div>
           </div>
-          {/* Icon End */}
-          {/* Icon Start */}
-          <div className="w-8 md:w-12 h-8 md:h-12  rounded-full flex justify-center items-center hover:bg-black/0.05] cursor-pointer relative">
-            <Link href={"/cart"}>
-              <BsCart className="text-[15px] md:text-[20px]" />
-            </Link>
-            {cartItems.length > 0 && (
-              <div
-                className="h-[14px] md:h-18px] min-w-[14px] md:min-w-[18px] rounded-full
-             bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px]
-            flex justify-center items-center px-[2px] md:px-[5px]"
-              >
-                {cartItems.length}
-              </div>
-            )}
-          </div>
-          {/* Icon End */}
 
-          {/* Mobile Navbar */}
-          <div className="w-8 md:w-12 flex md:hidden h-8 md:h-12  rounded-full justify-center items-center hover:bg-black/0.05] cursor-pointer relative -mr-2">
+          {/* Cart Icon */}
+          <Link href="/cart">
+            <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative transition-all">
+              <BsCart className="text-[15px] md:text-[20px]" />
+              {cartItems.length > 0 && (
+                <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-gradient-to-r from-red-500 to-pink-500 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px] font-bold">
+                  {cartItems.length}
+                </div>
+              )}
+            </div>
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <div className="w-8 md:w-12 flex md:hidden h-8 md:h-12 rounded-full justify-center items-center hover:bg-black/[0.05] cursor-pointer relative -mr-2 transition-all">
             {mobileMenu ? (
               <VscChromeClose
                 className="text-[16px]"

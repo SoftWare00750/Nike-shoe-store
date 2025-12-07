@@ -88,14 +88,13 @@ const Cart = () => {
                                 </div>
 
                                 {/* BUTTON START */}
-                                <button
-                                    className="w-full py-4 rounded-full bg-black text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:opacity-75 flex items-center gap-2 justify-center "
-                                    onClick={handlePayment}
-                                >
-                                    Checkout {
-                                        loading && <img src='/spinner.svg' />
-                                    }
-                                </button>
+                               <button
+  className="w-full py-4 rounded-full bg-gradient-to-r from-red-500 to-pink-500 text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:from-red-600 hover:to-pink-600 flex items-center gap-2 justify-center shadow-lg"
+  onClick={handlePayment}
+>
+  Checkout
+  {loading && <img src="/spinner.svg" />}
+</button>
                                 {/* BUTTON END */}
                             </div>
                             {/* SUMMARY END */}

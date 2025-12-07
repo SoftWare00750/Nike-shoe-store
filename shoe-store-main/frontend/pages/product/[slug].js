@@ -156,15 +156,38 @@ const ProductDetails = ({ product, products }) => {
                             }
                         }}
                     >
+                     </button>
                         Add to Cart
-                    </button>
-                    {/* ADD TO CART BUTTON END */}
+                  // Replace the "Add to Cart" button className:
+<button
+  className="w-full py-4 rounded-full bg-gradient-to-r from-red-500 to-pink-500 text-white text-lg font-medium transition-transform active:scale-95 mb-3 hover:from-red-600 hover:to-pink-600 shadow-lg"
+  onClick={() => {
+    if (!selectedSize) {
+      setShowError(true);
+      document.getElementById("sizesGrid").scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    } else {
+      dispatch(
+        addToCart({
+          ...product?.data?.[0],
+          selectedSize,
+          oneQuantityPrice: p.price,
+        })
+      );
+      notify();
+    }
+  }}
+>
+  Add to Cart
+</button>
 
-                    {/* WHISHLIST BUTTON START */}
-                    <button className="w-full py-4 rounded-full border border-black text-lg font-medium transition-transform active:scale-95 flex items-center justify-center gap-2 hover:opacity-75 mb-10">
-                        Whishlist
-                        <IoMdHeartEmpty size={20} />
-                    </button>
+// Replace the "Wishlist" button:
+<button className="w-full py-4 rounded-full border-2 border-red-500 text-red-500 text-lg font-medium transition-all active:scale-95 flex items-center justify-center gap-2 hover:bg-red-50 mb-10">
+  Wishlist
+  <IoMdHeartEmpty size={20} />
+</button>
                     {/* WHISHLIST BUTTON END */}
 
                     <div>
