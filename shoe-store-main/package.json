@@ -1,13 +1,18 @@
- {
-  "name": "nike-shoe-store",
-  "version": "1.0.0",
+{
+  "name": "shoe-store-backend",
+  "version": "0.1.0",
   "scripts": {
-    "dev": "cd frontend && npm run dev",
-    "dev:both": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:backend": "cd backend && npm run develop",
-    "dev:frontend": "cd frontend && npm run dev"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.9.0",
+    "@strapi/plugin-users-permissions": "4.9.0",
+    "@strapi/provider-upload-cloudinary": "^4.9.0",
+    "@strapi/strapi": "4.9.0",
+    "pg": "8.8.0",
+    "stripe": "^12.5.0"
   }
 }
